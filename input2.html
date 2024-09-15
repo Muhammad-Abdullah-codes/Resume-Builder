@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Generator</title>
+    <link href="src/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Input Form -->
+    <div id="resumeForm" class="max-w-4xl mx-auto my-10 p-10 bg-white shadow-md">
+        <form onsubmit="generateResume(event)">
+            <h1 class="text-3xl font-bold mb-5">Fill in Your Resume Information</h1>
+
+            <div class="mb-4">
+                <label for="fullName" class="block font-bold mb-2">Full Name</label>
+                <input type="text" id="fullName" class="w-full p-2 border" placeholder="Henrietta Mitchell" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="phone" class="block font-bold mb-2">Phone Number</label>
+                <input type="text" id="phone" class="w-full p-2 border" placeholder="+123-456-7890" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block font-bold mb-2">Email</label>
+                <input type="email" id="email" class="w-full p-2 border" placeholder="hello@reallygreatsite.com"
+                    required>
+            </div>
+
+            <div class="mb-4">
+                <label for="address" class="block font-bold mb-2">Address</label>
+                <input type="text" id="address" class="w-full p-2 border"
+                    placeholder="123 Anywhere St. Any City, ST 12345" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="jobTitle" class="block font-bold mb-2">Job Title</label>
+                <input type="text" id="jobTitle" class="w-full p-2 border" placeholder="Business Management & Analysis"
+                    required>
+            </div>
+
+            <div class="mb-4">
+                <label for="summary" class="block font-bold mb-2">Professional Summary</label>
+                <textarea id="summary" class="w-full p-2 border" rows="5" placeholder="Write your summary here..."
+                    required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="competencies" class="block font-bold mb-2">Key Competencies (one per line)</label>
+                <textarea id="competencies" class="w-full p-2 border" rows="3"
+                    placeholder="Competency 1&#10;Competency 2&#10;Competency 3" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="experienceCompany" class="block font-bold mb-2">Company Name</label>
+                <input type="text" id="experienceCompany" class="w-full p-2 border" placeholder="Borcelle Studio"
+                    required>
+            </div>
+
+            <div class="mb-4">
+                <label for="experienceTitle" class="block font-bold mb-2">Job Title</label>
+                <input type="text" id="experienceTitle" class="w-full p-2 border"
+                    placeholder="Marketing Manager & Specialist" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="experienceYears" class="block font-bold mb-2">Years of Employment</label>
+                <input type="text" id="experienceYears" class="w-full p-2 border" placeholder="2030 - PRESENT" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="experienceDuties" class="block font-bold mb-2">Duties (one per line)</label>
+                <textarea id="experienceDuties" class="w-full p-2 border" rows="3"
+                    placeholder="Duty 1&#10;Duty 2&#10;Duty 3" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="education" class="block font-bold mb-2">Education</label>
+                <input type="text" id="education" class="w-full p-2 border"
+                    placeholder="Bachelor of Business Administration" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="certifications" class="block font-bold mb-2">Certifications</label>
+                <input type="text" id="certifications" class="w-full p-2 border"
+                    placeholder="Graduate Project Management Certification" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="activities" class="block font-bold mb-2">Extracurricular Activities (one per line)</label>
+                <textarea id="activities" class="w-full p-2 border" rows="3"
+                    placeholder="President, Business Club&#10;Community Volunteer"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 font-bold">Generate Resume</button>
+        </form>
+    </div>
+
+    <!-- Resume Output -->
+    <div id="content">
+        <div id="resumeOutput" class="max-w-4xl mx-auto my-10 px-20 py-20 bg-white shadow-md hidden">
+            <section>
+                <h1 id="resumeName" class="text-5xl font-bold">Henrietta Mitchell</h1>
+                <div class="mt-2">
+                    <span id="resumePhone">+123-456-7890</span>
+                    <span>.</span>
+                    <span id="resumeEmail">hello@reallygreatsite.com</span>
+                </div>
+                <div class="mb-5">
+                    <span id="resumeAddress">123 Anywhere St. Any City, ST 12345</span>
+                </div>
+                <div class="h-0.5 bg-black"></div>
+            </section>
+
+            <section class="my-5">
+                <span id="resumeJobTitle" class="text-xl font-bold">Business Management & Analysis</span>
+                <p id="resumeSummary" class="mb-5"></p>
+                <div class="h-0.5 bg-black"></div>
+            </section>
+
+            <section class="my-5">
+                <span class="font-bold text-xl">Key Competencies</span>
+                <ul id="resumeCompetencies" class="list-disc list-inside text-gray-600 mt-2 mb-5"></ul>
+                <div class="h-0.5 bg-black"></div>
+            </section>
+
+            <section class="my-5">
+                <span class="text-xl font-bold">Professional Experience</span>
+                <div class="mb-4 mt-2">
+                    <h3 id="resumeExperienceCompany" class="font-bold text-gray-800">Borcelle Studio</h3>
+                    <p id="resumeExperienceTitle">Marketing Manager & Specialist</p>
+                    <p id="resumeExperienceYears">2030 - PRESENT</p>
+                    <ul id="resumeExperienceDuties" class="list-disc list-inside text-gray-600 mt-2"></ul>
+                </div>
+                <div class="h-0.5 bg-black"></div>
+            </section>
+
+            <section class="flex flex-row space-x-10">
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold mb-3">Education & Certifications</span>
+                    <span id="resumeEducation" class="font-bold">Bachelor of Business Administration</span>
+                    <span id="resumeCertifications">Graduate Project Management Certification</span>
+                </div>
+                <div>
+                    <hr class="h-full w-0.5 bg-black">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold mb-3">Extracurricular Activities</span>
+                    <div id="resumeActivities" class="text-gray-600"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="flex justify-center items-center">
+        <button id="download"
+            class="mt-3 bg-black text-white py-2 px-4 rounded-lg text-xl hover:bg-gray-300 hover:shadow-lg hover:text-black cursor-pointer">Download
+            Resume</button>
+    </div>
+
+</body>
+<script src="script/input2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+
+</html>
